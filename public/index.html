@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>COVID-19 Tracker</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+   <div class="spinner loading">
+      <div class="spinner-grow" role="status">
+         <span class="visually-hidden"></span>
+      </div>
+   </div>
+   <div class="row">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+         <div class="container-fluid">
+            <a class="navbar-brand w-25" href="#">
+               <h3 class="nav-bar-title">COVID-19 Tracker</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+               aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+               <ul class="navbar-nav menu-navbar-nav options text-center">
+                  
+               </ul>
+               <form class="d-flex registration-area justify-content-center">
+                  <a class="btn mx-3 btn-wheat btn-display-none rounded-pill px-3 sign-up-main-btn" data-bs-toggle="modal" data-bs-target="#sign-up-modal"
+                     type="submit"><i class="fas fa-user-plus"></i> Sign Up</a>
+                  <a class="btn mx-3 btn-wheat btn-display-none rounded-pill px-3 login-main-btn" data-bs-toggle="modal" data-bs-target="#login-modal"
+                     type="submit"><i class="fas fa-sign-in-alt"></i> Login</a>
+               </form>
+            </div>
+         </div>
+      </nav>
+   </div>
+   <div class="container-fluid first-page p-0 unable">
+      <div class="container-fluid section-home home text-center">
+         <div class="content">
+            <h1 class="text-center website-title">COVID-19 Tracker</h1>
+            <p class="hero-para w-75 my-5 text-center">Keep updated with the new feeds about the COVID-19 panedimic
+               through out the entire globe.</p>
+            <a href="#country-cards" class="btn btn-home rounded-pill go-down">Show Countries</a>
+         </div>
+      </div>
+
+      <div id="country-cards" class="container-fluid section-1 bg-white mt-5 p-5">
+         <div class="row justify-content-around cards text-center">
+
+         </div>
+      </div>
+      <div class="container text-center mt-2">
+         <nav id="c_cards" class="d-inline-block" aria-label="Page navigation example">
+            <ul class="pagination">
+               <li class="page-item" id="prev">
+                  <a class="page-link" href="#c_cards" aria-label="Previous">
+                     <span aria-hidden="true">&laquo;</span>
+                  </a>
+               </li>
+               
+               <li class="page-item" id="next">
+                  <a class="page-link" href="#c_cards" aria-label="Next">
+                     <span aria-hidden="true">&raquo;</span>
+                  </a>
+               </li>
+            </ul>
+         </nav>
+      </div>
+   </div>
+   <p class="text-center text-white">
+      COVID-19 Tracker © 2021
+      all copyrights reserved 
+   </p>
+   <div class="modal-area"></div>
+   <script src="./js/loadModals.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"></script>
+   <script src="./js/script.js"></script>
+   <script src="./js/user.js"></script>
+   <script src="./js/user-assets.js"></script>
+</body>
+
+</html>

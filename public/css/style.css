@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Condensed:wght@300;700&family=Rubik:wght@600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #14272E;
+}
+.btn-display-none{
+    display: none;
+}
+.hero-para{
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+.loading{
+    position: fixed;
+    z-index: 2;
+    background-color:aliceblue;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loaded{
+    position: absolute;
+    z-index: 2;
+    background-color:aliceblue;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 1.5s ease-in-out opacity;
+    pointer-events: none;
+}
+.website-title{
+    font-size: 5rem;    
+}
+.unable{
+    display: none
+}
+.able{
+    display: block;
+}
+.home{
+    color: aliceblue;
+    background-image: url('../assets/bg-home.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #14272E;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-heart{
+    cursor: pointer;
+}
+.card{
+    font-family: 'Roboto Condensed', sans-serif;
+    transition: 0.5s all;
+    border-radius: 1em 0px 1em 0px;
+}
+.card-title{
+    font-weight: bold;
+}
+.card:hover{
+    box-shadow: 0px 0px 20px;
+    transition: 0.5s all;
+}
+
+.card-data{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.numbers{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.navbar{
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s all ease-in-out;
+}
+.scrolled{
+    opacity: 1;
+    pointer-events:inherit;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 5px rgb(160, 160, 160);
+    transition: 0.3s all ease-in-out;
+}
+.navbar-light .navbar-brand, .navbar-light:hover .navbar-brand:hover, .nav-item, .nav-item:hover {
+    color: #14272E;
+    
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #14272E;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #14272E;
+}
+.nav-bar-title{
+    font-size: 1.5rem;
+    transition: 0.4s all;
+}
+
+.btn-home{
+    background-color: #14272E;
+    color: wheat;
+    border:2px solid wheat;
+    font-weight: bold;
+    transition: 0.5s ease-in-out all;
+    padding: 0.5em 2em;
+}
+.btn-home:hover{
+    background-color: wheat;
+    color: #14272E;
+    border:2px solid #14272E;
+    font-weight: bold;
+    transition: 0.5s ease-in-out all;
+    padding: 0.5em 4em;
+}
+
+.btn-wheat{
+    border:2px solid #14272E;
+    transition: 0.5s all;
+    font-weight: bold;
+
+}
+.btn-wheat:hover{
+    background-color:  #14272E;
+    color: wheat;
+    transition: 0.5s all;
+}
+
+.btn-outline-wheat{
+    background-color: #14272E;
+    color: wheat;
+    border:2px solid  #14272E;
+    transition: 0.5s all;
+    font-weight: bold;
+}
+.disable{
+    display: none;
+}
+i[class*="fa"]{
+    cursor: pointer;
+}
+.modal .form-control:focus{
+    border-color: gray;
+    box-shadow:0 0 1rem gray;
+    transition: 0.4s all;
+}
+.cards{
+    -webkit-transition: width 0.3s ease, margin 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease;
+}
+.modal-header{
+    box-shadow: 0 2px 5px rgb(175, 175, 175);
+}
+.modal label{
+    font-family: 'Oswald', sans-serif;
+}
+.btn:hover{
+    box-shadow:0 0 6px rgb(175, 175, 175);
+}
+.btn:focus{
+    box-shadow:none
+}
+
+.user-icon{
+    width: 3.1rem;
+    height: 3.1rem;
+    color: #0a043c;
+    background-color: #f4f5db;
+    border: 2px solid #0a043c;
+    cursor: pointer;
+    transition: 0.5s all ease;
+}
+.user-icon:hover{
+    color: #f4f5db;
+    background-color: #0a043c;
+    border: 2px solid #f4f5db;
+    box-shadow: 0 0 10px rgb(167, 167, 167);
+    transition: 0.5s all ease;
+}
+a.user-icon-a {
+    color: inherit;
+    text-decoration: none;
+}
+.user-icon-a h5{
+    font-size: 1.4rem;
+}
+/*----------------- Scroll-bar -*/
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
