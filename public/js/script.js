@@ -48,7 +48,6 @@ $(document).ready(async () => {
    
    let numOfCountries;
    if (window.location.href.indexOf("profile.html") > -1) {
-      console.log("profile page")
       var myHeaders = new Headers();
       myHeaders.append("Authorization", localStorage.getItem('userToken'));
       
@@ -63,10 +62,8 @@ $(document).ready(async () => {
        showFavCountries(0, 32)
        generatePagination(numOfCountries)
    } else {
-      console.log("home page")
       numOfCountries = await fetch('/api/countries/noOfRecords')
       numOfCountries = await numOfCountries.json()
-      console.log({ countries: numOfCountries.numOfCountries })
        showCountries(0, 32)
        generatePagination(numOfCountries.numOfCountries)
    }
@@ -179,7 +176,6 @@ const spinnerComponent = () => {
 
 function DOMFunctions() {
    $('.pagiNum').on('click', (e) => {
-      console.log("pagination number clicked")
       $('.pagiNum.active').removeClass('active')
       e.target.parentElement.classList.add('active')
 
@@ -193,7 +189,6 @@ function DOMFunctions() {
    })
 
    $('#next').on('click', () => {
-      console.log("NEXT clicked")
       let index = Number($($('.pagiNum.active').children()[0]).html())
       if (index < $('.pagiNum').length) {
          let skip = Number($('.pagiNum.active').children()[0].classList[1].split('-')[0])
@@ -208,7 +203,6 @@ function DOMFunctions() {
       }
    })
    $('#prev').on('click', () => {
-      console.log("PREV clicked")
       let index = Number($($('.pagiNum.active').children()[0]).html())
       if (index > 1) {
          let skip = Number($('.pagiNum.active').children()[0].classList[1].split('-')[0])
@@ -220,7 +214,6 @@ function DOMFunctions() {
    })
 
    $('.sign-up-main-btn').on('click',()=>{
-      console.log("enter")
       loginError.html('');
       signupForm.elements.usernameSignUp.value = '';
       signupForm.elements.passwordSignUp.value = '';
@@ -279,7 +272,6 @@ function DOMFunctions() {
       
       fetch("/api/users/favorites/", requestOptions)
       .then(response => {
-            console.log(response.status == 401)
             if(response.status == 401){
                $('#login-modal').modal('toggle');
                return
@@ -293,7 +285,7 @@ function DOMFunctions() {
                $(target).addClass('fas fa-heart')
             },1000)
          })
-         .catch(error => console.log('error', error));
+         .catch(error => error /*console.log('error', error)*/);
    })
 
    $('.fa-times-circle').on('click',(e)=>{
@@ -313,7 +305,6 @@ function DOMFunctions() {
       
       fetch("/api/users/favorites/", requestOptions)
       .then(response => {
-            console.log(response.status == 401)
             if(response.status == 401){
                return
             }
@@ -325,12 +316,11 @@ function DOMFunctions() {
             return response.json();
          })
          .then(response => {
-            console.log(response.favoriteCountries)
             if(response.favoriteCountries.length < 1){
                countries.html(cardsEmpty())
             }
          })
-         .catch(error => console.log('error', error));
+         .catch(error => error /*console.log('error', error)*/);
    })
    $('.settings').on('click',()=>{
       userUsernameError.html('')
@@ -355,7 +345,6 @@ async function validateUser() {
       let data = await fetch('/api/users/profile', requestOptions)
       let status = await data.status;
       data = await data.json()
-      console.log({ data, status })
       if (status == 201) {
          registrationArea.append(userIcon(data))
          $('.options').append(options)
@@ -363,7 +352,8 @@ async function validateUser() {
       }
       $('.btn-display-none').removeClass('btn-display-none')
    } catch (error) {
-      console.log("Error: ", error)
+      return error;
+      //console.log("Error: ", error)
    }
 }
 

@@ -31,7 +31,6 @@ signupBtn.on('click', async (e) => {
       signupUsernameError.html(usernameValid)
       signupFullNameError.html(fullNameValid)
       signupPasswordError.html(passwordValid)
-      console.log(passwordValid.length )
       
       if (!data.error) {
          setTimeout(() => {
@@ -45,13 +44,12 @@ signupBtn.on('click', async (e) => {
             $('.signup-spinner').addClass('disable')
             signupBtn.removeClass('disabled')
             if(status == 409){
-               console.log("SDF");
                signupError.html('Username is used')
             }
          }, 1000)
       }
    } catch (error) {
-      console.log({ error })
+     // console.log({ error })
    }
 })
 
@@ -59,9 +57,8 @@ loginBtn.on('click', async (e) => {
    try {
       $('.login-spinner').removeClass('disable')
       loginBtn.addClass('disabled')
-      let username = loginForm.elements.usernameLogin.value
-      let password = loginForm.elements.passwordLogin.value
-      console.log({ username, password })
+      let username = loginForm.elements.usernameLogin.value;
+      let password = loginForm.elements.passwordLogin.value;
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -99,7 +96,7 @@ loginBtn.on('click', async (e) => {
          }, 1000)
       }
    } catch (error) {
-      console.log({ error })
+      //console.log({ error })
    }
 })
 
@@ -136,8 +133,7 @@ userBtn.on('click', async (e) => {
 
       let data = await fetch(userApis.update, requestOptions)
       data = await data.json()
-      console.log("SDFSDAF")
-      console.log(data)
+     
       if (data.valid) {
          setTimeout(() => {
             userEditModal.modal('toggle')
@@ -151,12 +147,11 @@ userBtn.on('click', async (e) => {
          }, 1000)
       }
    } catch (error) {
-      console.log({ error })
+      //console.log({ error })
    }
 })
 
 $('.check-password').on('click', (e) => {
-   console.log($(e.target).is(":checked"))
    if ($(e.target).is(":checked")) {
       $('#newPasswordUser').removeAttr('disabled')
       
