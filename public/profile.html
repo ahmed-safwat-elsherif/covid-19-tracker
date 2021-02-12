@@ -13,6 +13,7 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/hamburger-icon.css">
 </head>
 
 <body>
@@ -55,26 +56,21 @@
    </div>
    <div class="container-fluid first-page p-0 unable">
       <div id="country-cards" class="container-fluid section-1 bg-white mt-5 p-5">
-         <div id="container"><h1 class="text-center">Favourites</h1><hr/></div>
+         <div class="row my-3"><a class="link font-roboto font-bold text-decoration-none" href="/"><i class="fas fa-chevron-left"></i> Back to countries</a></div>
+         <div class="container">
+            <div id="row"><h1 class="font-roboto font-bold text-center">Favourites</h1><hr/></div>
+         </div>
          <div class="row justify-content-center cards text-center">
 
          </div>
       </div>
       <div class="container text-center mt-2">
          <nav id="c_cards" class="d-inline-block" aria-label="Page navigation  example">
-            <ul class="pagination">
-               <li class="page-item" id="prev">
-                  <a class="page-link" href="#c_cards" aria-label="Previous">
-                     <span aria-hidden="true">&laquo;</span>
-                  </a>
-               </li>
+            <div class="btn-group" role="group" aria-label="Basic example">
+               <button type="button" id="prev" class="btn rounded-pill px-3 btn-wheat"><i class="fas fa-chevron-left"></i></button>
                
-               <li class="page-item " id="next">
-                  <a class="page-link " href="#c_cards" aria-label="Next">
-                     <span aria-hidden="true">&raquo;</span>
-                  </a>
-               </li>
-            </ul>
+               <button type="button" id="next" class="btn rounded-pill px-3 btn-wheat"><i class="fas fa-chevron-right"></i></button>
+            </div>
          </nav>
       </div>
    </div>

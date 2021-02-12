@@ -162,8 +162,9 @@ const generatePagination = (numOfCountries) => {
    let numOfPages = (Math.ceil(numOfCountries / limit));
    for (let i = numOfPages; i >= 1; i--) {
       skip = 32 * (i - 1);
-      pagOfBtns = `<li class="page-item pagiNum"><a class="page-link ${skip}-${limit}" href="#c_card">${i}</a></li>`
-      $(pagOfBtns).insertAfter($(".page-item").first())
+      pagOfBtns = `<button type="button" class="pagiNum ${skip}-${limit} btn mx-1 rounded-circle btn-wheat">${i}</button>`
+      //pagOfBtns = `<li class="page-item pagiNum"><a class="page-link ${skip}-${limit}" href="#c_card">${i}</a></li>`
+      $(pagOfBtns).insertAfter($("#prev"))
    }
    $('.pagiNum').first().addClass('active')
    return true
@@ -192,6 +193,7 @@ function DOMFunctions() {
    })
 
    $('#next').on('click', () => {
+      console.log("next")
       let index = Number($($('.pagiNum.active').children()[0]).html())
       if (index < $('.pagiNum').length) {
          let skip = Number($('.pagiNum.active').children()[0].classList[1].split('-')[0])
@@ -422,7 +424,7 @@ async function validateUser() {
       let status = await data.status;
       data = await data.json()
       if (status == 201) {
-         registrationArea.append(userIcon(data))
+         //registrationArea.append(userIcon(data))
          $('.options').append(options)
          return
       }
@@ -446,15 +448,15 @@ const userIcon = (user) => {
 const options = () => {
    return `
    <li class="nav-item dropdown dropdown-options">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-         Options
-      </a>
+      <button class="btn btn-wheat dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+         ${localStorage.getItem('username')}
+      </button>
       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-         <li><button class="dropdown-item show-fav"><i class="fab fa-gratipay"></i> Favorites</button></li>
-         <li><button class="dropdown-item settings" data-bs-toggle="modal" data-bs-target="#user-modal"><i class="fas fa-cogs"></i> Settings</button></li>
+         <li><button class="dropdown-item show-fav"><i class="fab fa-gratipay"></i><span class="d-inline-block ps-2">Favorites</span></button></li>
+         <li><button class="dropdown-item settings" data-bs-toggle="modal" data-bs-target="#user-modal"><i class="fas fa-cogs"></i><span class="d-inline-block ps-2">Settings</span></button></li>
          <li><hr class="dropdown-divider"></li>
          <li><button class="dropdown-item logout">
-         <div class="spinner-border disable logout-spinner spinner-border-sm" role="status"></div><i class="fas fa-sign-out-alt"></i> Logout
+         <div class="spinner-border disable logout-spinner spinner-border-sm" role="status"></div><i class="fas fa-sign-out-alt"></i><span class="d-inline-block ps-2">Logout</span>
          </button></li>
       </ul>
    </li>
@@ -466,7 +468,7 @@ const cardsEmpty = () => {
    return ` 
       <div class="col-md-12 m">
          <img class="img-fluid" id="not-found" alt="Favorite not found" src="../assets/not-found.png"/>
-         <h4 style='height: 12rem;'>Sorry! No cards were added to favorites :'(</h4>
+         <h4 style='height: 7rem;'>Sorry! No cards were added to favorites :'(</h4>
       </div>
    `
 }

@@ -12,17 +12,19 @@ router.post('/register', async (req, res, next) => {
     try {
         const { username="", password="", fullName="" } = req.body;
         console.log(req.body)
+        console.log(password.length)
         if(password.length < 6) throw new Error({error:'password accepts only minimum 6 characters'})
         const hash = await bcrypt.hash(password, 7);
         const user = await User.create({ username, password: hash, fullName })
         res.statusCode = 201;
         res.send({ user, message: { success: true } })
     } catch (error) {
-        console.log(error)
-        if (error.keyPattern.username){
+        if (error.keyPattern && error.keyPattern.username){
+            console.log(true,{error})
             res.status(409).send({error});
             return;
         } 
+        console.log(false, {error})
         res.status(422).send({ error });
     }
 })

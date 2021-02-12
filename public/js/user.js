@@ -10,7 +10,7 @@ signupBtn.on('click', async (e) => {
       let username = signupForm.elements.usernameSignUp.value
       let password = signupForm.elements.passwordSignUp.value
       let fullName = signupForm.elements.fullNameSignUp.value
-
+      console.log("aa")
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -26,21 +26,26 @@ signupBtn.on('click', async (e) => {
       let data = await fetch(userApis.register, requestOptions)
       let status = data.status;
       
-      data = await data.json()
+      data = await data.json();
       let { usernameValid, fullNameValid, passwordValid } = checkUserInfo(username, fullName, password)
+      console.log({usernameValid,fullNameValid, passwordValid});
       signupUsernameError.html(usernameValid)
       signupFullNameError.html(fullNameValid)
       signupPasswordError.html(passwordValid)
-      
-      if (!data.error) {
+      signupError.html('');
+      if (!data.error && usernameValid.length < 1) {
          setTimeout(() => {
-            signupModal.modal('toggle')
+            console.log("DSDSD")
+            signupModal.modal('hide')
             $('.signup-spinner').addClass('disable')
             signupBtn.removeClass('disabled')
-            loginModal.modal('toggle')
+            loginModal.modal('show')
          }, 2000)
       } else {
          setTimeout(() => {
+            signupUsernameError.html(usernameValid)
+            signupFullNameError.html(fullNameValid)
+            signupPasswordError.html(passwordValid)
             $('.signup-spinner').addClass('disable')
             signupBtn.removeClass('disabled')
             if(status == 409){
