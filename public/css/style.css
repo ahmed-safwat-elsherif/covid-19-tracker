@@ -138,7 +138,15 @@ body{
     transition: 0.5s ease-in-out all;
     padding: 0.5em 4em;
 }
-
+.btn-link{
+    text-decoration: none;
+    font-weight: bold;
+    color: #14272E;
+    transition: 00.4s all;
+}
+.btn-link:hover{
+    color:#0d6efd;
+}
 .btn-wheat{
     border:2px solid wheat;
     color: wheat;
