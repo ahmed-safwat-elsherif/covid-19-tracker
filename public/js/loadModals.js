@@ -149,8 +149,49 @@ const userModal = () => {
      `
 }
 
+const countryModal = () => {
+    return `
+    
+    <div class="modal fade country-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img class="img-fluid align-self-center me-2 d-block country-flag" />
+                    <h5 class="modal-title country-modal-name" id="exampleModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-grow text-center modal-spinner text-info" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <div class="country-modal-content disable">
+                        <div class="w-75 m-auto">
+                            <div class="country-name row align-self-center">country name</div>
+                            <div class="country-population row align-self-center">country name</div>
+                            <div class="country-confirmed row align-self-center">country name</div>
+                            <div class="country-confirmed_daily row align-self-center">country name</div>
+                            <div class="country-deaths row align-self-center">country name</div>
+                            <div class="country-deaths_daily row align-self-center">country name</div>
+                            <div class="country-recovered row align-self-center">country name</div>
+                            <div class="country-recovered_daily row align-self-center">country name</div>
+                            <hr/>
+                            <div class="country-last-update"></div>
+                        </div>
+                    </div>            
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-wheat" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `
+}
 $('.modal-area').append(
    signUpModal(),
    logInModal(),
-   userModal()
+   userModal(),
+   countryModal()
 )

@@ -4,6 +4,10 @@
     margin: 0;
     padding: 0;
 }
+:root{
+    --nav-bg-color:#14272E;
+    --nav-text-color:white;
+}
 
 body{
     background-color: #14272E;
@@ -95,19 +99,23 @@ body{
 .scrolled{
     opacity: 1;
     pointer-events:inherit;
-    background-color: #ffffff;
+    background-color: var(--nav-bg-color);
     box-shadow: 0px 1px 5px rgb(160, 160, 160);
     transition: 0.3s all ease-in-out;
 }
+.font-bold{
+    font-weight: bold;
+}
+
+
 .navbar-light .navbar-brand, .navbar-light:hover .navbar-brand:hover, .nav-item, .nav-item:hover {
-    color: #14272E;
-    
+    color: var(--nav-text-color);
 }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-    color: #14272E;
+    color: var(--nav-text-color);
 }
 .navbar-light .navbar-nav .nav-link {
-    color: #14272E;
+    color: var(--nav-text-color);
 }
 .nav-bar-title{
     font-size: 1.5rem;
@@ -132,14 +140,16 @@ body{
 }
 
 .btn-wheat{
-    border:2px solid #14272E;
+    border:2px solid wheat;
+    color: wheat;
     transition: 0.5s all;
     font-weight: bold;
 
 }
 .btn-wheat:hover{
-    background-color:  #14272E;
-    color: wheat;
+    border:2px solid #14272E;
+    background-color:  wheat;
+    color: #14272E;
     transition: 0.5s all;
 }
 
@@ -181,7 +191,6 @@ i[class*="fa"]{
 }
 
 .user-icon{
-    width: 3.1rem;
     height: 3.1rem;
     color: #0a043c;
     background-color: #f4f5db;
@@ -202,6 +211,10 @@ a.user-icon-a {
 }
 .user-icon-a h5{
     font-size: 1.4rem;
+}
+
+.know-more:hover{
+    box-shadow: none;
 }
 /*----------------- Scroll-bar -*/
 /* width */

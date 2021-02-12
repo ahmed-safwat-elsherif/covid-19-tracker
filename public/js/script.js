@@ -45,7 +45,9 @@ $(document).ready(async () => {
    spinner.addClass('loaded');
    wholePage.removeClass('unable');
    validateUser();
-   
+   $('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
+		$(this).toggleClass('open');
+	});
    let numOfCountries;
    if (window.location.href.indexOf("profile.html") > -1) {
       var myHeaders = new Headers();
@@ -130,10 +132,10 @@ async function showFavCountries(skip, limit) {
 const countryCard = (country, isFavorie) => {
    let isDisabled = !(window.location.href.indexOf("profile.html") > -1)
    return `
-   <div class="card m-3" id=${country._id} style="width: 18rem;">
+   <div class="country-card card country-${country.uid} m-3" id="${country._id}" style="width: 18rem;">
       <div class=" text-end mt-2">
          <div class="text-end ">
-            <i style="font-size:2rem;" class=" ${(isDisabled)?"":"disable"} ${(isFavorie) ? 'fav-icon' : ''} ${(isFavorie) ? 'fas' : 'far'} fa-heart"></i>
+            <i style="font-size:2rem;" class=" ${(isDisabled)?"":"disable"} ${(isFavorie) ? 'fav-icon' : ''} ${(isFavorie) ? 'fas' : 'far'} icon-${country.uid} fa-heart"></i>
             <i style="font-size:2rem;" class=" ${(isDisabled)?"disable":""} ${(isFavorie) ? 'fav-icon' : ''} fas fa-times-circle"></i>
          <div>
       </div>
@@ -147,6 +149,7 @@ const countryCard = (country, isFavorie) => {
             <div class="numbers text-danger row"><span class="card-data col-8"><i class="fas fa-skull"></i> Deaths:</span>${country.deaths || "N/A"}<hr/></div>
             <div class="numbers text-success row"><span class="card-data col-8"><i class="fas fa-plus-square"></i> Recovered:</span>${country.recovered || "N/A"}<hr/></div>
          </div>
+         <button type="button" class="know-more btn btn-link">Know more</button>
       </div>
    </div>
    `
@@ -254,6 +257,41 @@ function DOMFunctions() {
          $(e.target).addClass('far')
       }
    )
+   $('.country-card').dblclick((e)=>{
+      let _id = e.target.id;
+      console.log(_id);
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", localStorage.getItem('userToken'));
+      myHeaders.append("Content-Type", "application/json");
+
+      var raw = JSON.stringify({ "_id": _id });
+      console.log(e.target)
+      let uid = e.target.classList[2].split("-")[1];
+      var requestOptions = {
+         method: 'POST',
+         headers: myHeaders,
+         body: raw,
+         redirect: 'follow'
+      };
+      let target = document.querySelector(`.icon-${uid}`);
+      
+      fetch("/api/users/favorites/", requestOptions)
+      .then(response => {
+            if(response.status == 401){
+               $('#login-modal').modal('toggle');
+               return
+            }
+            $(target).attr('class', '');
+            $(target).addClass('fa fa-circle-o-notch fa-spin')
+            //$(target).off('mouseenter mouseleave')
+            setTimeout(() => {
+               $(target).attr('class', '');
+               $(target).addClass('fav-icon')
+               $(target).addClass('fas fa-heart')
+            },1000)
+         })
+         .catch(error => error /*console.log('error', error)*/);
+   })
    $('.fa-heart:not(.fav-icon)').on('click', (e) => {
       let _id = e.target.parentElement.parentElement.parentElement.id;
       var myHeaders = new Headers();
@@ -286,6 +324,44 @@ function DOMFunctions() {
             },1000)
          })
          .catch(error => error /*console.log('error', error)*/);
+   })
+
+   $('.know-more').click((e)=>{
+      let _id = e.target.parentElement.parentElement.parentElement.parentElement.id;
+      $('.modal-spinner').removeClass('disable');
+      // console.log(e.target.parentElement.parentElement.parentElement.parentElement)
+      // Modal entries:
+      var requestOptions = {
+         method: 'GET',
+         redirect: 'follow'
+       };
+       
+       fetch(`/api/countries/${_id}`, requestOptions)
+         .then(res => {
+            if(res.status == 404) throw new Error({error:"Cannot find the country"})
+            return res;
+         })
+         .then(response => response.json())
+         .then((response) => {
+            let country = response.country;
+            $('.country-modal').modal('show');
+            $('.modal-spinner').addClass('disable');
+            $('.country-flag').attr('src',`https://www.countryflags.io/${country.country_iso2}/flat/64.png`)
+            $('.country-modal-content').removeClass('disable');
+            $('.country-modal-name').html(`${country.country}`);
+            let date = new Date(country.date);
+            let lastUpdate = date.getDate()+'-' + (date.getMonth()+1) + '-'+date.getFullYear();
+            $('.country-name').html(`<span class="font-bold col-6">Country:</span> <span class="col-6 text-center">${country.combined_name || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-population').html(`<span class="font-bold col-6" >Population:</span> <span class="col-6 text-center">${country.population || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-confirmed').html(`<span class="text-primary font-bold col-6" >Confirmed:</span> <span class="col-6 text-center">${country.confirmed || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-confirmed_daily').html(`<span class="text-primary font-bold col-6" >Confirmed (daily):</span> <span class="col-6 text-center">${country.confirmed_daily || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-deaths').html(`<span class="text-danger font-bold col-6" >Deaths:</span> <span class="col-6 text-center">${country.deaths || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-deaths_daily').html(`<span class="text-danger font-bold col-6" >Deaths (daily):</span> <span class="col-6 text-center">${country.deaths_daily || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-recovered').html(`<span class="text-success font-bold col-6" >Recovered:</span> <span class="col-6 text-center">${country.recovered || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-recovered_daily').html(`<span class="text-success font-bold col-6" >Recovered (daily):</span> <span class="col-6 text-center">${country.recovered_daily || 'N/A'}</span><hr class="m-auto mb-2"/>`);
+            $('.country-last-update').html(`<span class="text-muted font-bold" >Last updated: <span>${lastUpdate}</span></span> `);
+         })
+         .catch(error => console.log('error', error));
    })
 
    $('.fa-times-circle').on('click',(e)=>{
