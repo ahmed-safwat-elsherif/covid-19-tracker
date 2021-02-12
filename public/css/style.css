@@ -16,7 +16,7 @@ body{
     display: none;
 }
 .hero-para{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: auto;
 }
 
@@ -44,7 +44,7 @@ body{
     pointer-events: none;
 }
 .website-title{
-    font-size: 5rem;    
+    font-size: 4.5rem;    
 }
 .unable{
     display: none

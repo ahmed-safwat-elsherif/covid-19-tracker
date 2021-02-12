@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0; 
   }
+  .navbar-toggler{
+    padding: 0;
+  }
   /* Icon 1 */
   .navbar-toggler{
       border: none;
@@ -66,12 +69,12 @@
   }
   
   #nav-icon2 span:nth-child(even) {
-    left: 40%;
+    left: 54%;
     border-radius: 0 1rem 1rem 0;
   }
   
   #nav-icon2 span:nth-child(odd) {
-    left:2px;
+    left:9px;
     border-radius: 1rem 0 0 1rem;
   }
   
@@ -102,12 +105,12 @@
   }
   
   #nav-icon2.open span:nth-child(1) {
-    left: 6px;
+    left: 12px;
     top: 15px;
   }
   
   #nav-icon2.open span:nth-child(2) {
-    left: calc(48% - 5px);
+    left: calc(60% - 5px);
     top: 15px;
   }
   
@@ -122,12 +125,12 @@
   }
   
   #nav-icon2.open span:nth-child(5) {
-    left: 6px;
+    left: 12px;
     top: 28px;
   }
   
   #nav-icon2.open span:nth-child(6) {
-    left: calc(48% - 5px);
+    left: calc(60% - 5px);
     top: 28px;
   }
   
