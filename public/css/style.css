@@ -71,12 +71,14 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
     transition: 0.5s all;
     border-radius: 1em 0px 1em 0px;
+    box-shadow: 0px 0px 10px rgb(163, 163, 163);
+    width: 18rem;
 }
 .card-title{
     font-weight: bold;
 }
 .card:hover{
-    box-shadow: 0px 0px 20px;
+    border: 1px solid rgb(0, 6, 31);
     transition: 0.5s all;
 }
 
@@ -85,7 +87,12 @@ body{
     font-weight: bold;
     font-size: 1rem;
 }
-
+.cards{
+    -webkit-transition: width 0.3s ease, margin 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease;
+}
 .numbers{
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
@@ -100,7 +107,7 @@ body{
     opacity: 1;
     pointer-events:inherit;
     background-color: var(--nav-bg-color);
-    box-shadow: 0px 1px 5px rgb(160, 160, 160);
+    box-shadow: 0px 1px 5px rgb(107, 107, 107);
     transition: 0.3s all ease-in-out;
 }
 .font-bold{
@@ -157,7 +164,7 @@ body{
     font-weight: bold;
 
 }
-.btn-wheat:hover{
+.btn-wheat:hover , .pagiNum.active{
     border:2px solid #14272E;
     background-color:  wheat;
     color: #14272E;
@@ -182,12 +189,7 @@ i[class*="fa"]{
     box-shadow:0 0 1rem gray;
     transition: 0.4s all;
 }
-.cards{
-    -webkit-transition: width 0.3s ease, margin 0.3s ease;
-    -moz-transition: width 0.3s ease, margin 0.3s ease;
-    -o-transition: width 0.3s ease, margin 0.3s ease;
-    transition: width 0.3s ease, margin 0.3s ease;
-}
+
 .modal-header{
     box-shadow: 0 2px 5px rgb(175, 175, 175);
 }
@@ -200,7 +202,12 @@ i[class*="fa"]{
 .btn:focus{
     box-shadow:none
 }
-
+.modal .btn-wheat {
+    border:2px solid #14272E;
+    background-color:  wheat;
+    color: #14272E;
+    transition: 0.5s all;
+}
 .user-icon{
     height: 3.1rem;
     color: #0a043c;
@@ -232,9 +239,6 @@ a.user-icon-a {
 }
 .font-bold{
     font-weight: bold;
-}
-.link{
-
 }
 /*----------------- Scroll-bar -*/
 /* width */

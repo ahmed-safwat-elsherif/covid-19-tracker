@@ -137,11 +137,11 @@ const userModal = () => {
                          </div>
                          </div>
                      </form>
-                 </div>
-                 <div class="modal-footer">
-                     <button type="button" class="btn user-btn btn-wheat px-3 rounded-pill">
-                         <div class="spinner-border disable user-spinner spinner-border-sm" role="status"></div> Save changes
-                     </button>
+                     <div class="justify-content-center text-center mt-4">
+                         <button type="button" class="btn user-btn btn-wheat px-3 rounded-pill">
+                             <div class="spinner-border disable user-spinner spinner-border-sm" role="status"></div> Save changes
+                         </button>
+                     </div>
                  </div>
              </div>
          </div>
