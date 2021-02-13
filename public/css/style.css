@@ -71,8 +71,8 @@ body{
     font-family: 'Roboto Condensed', sans-serif;
     transition: 0.5s all;
     border-radius: 1em 0px 1em 0px;
-    box-shadow: 0px 0px 10px rgb(163, 163, 163);
     width: 18rem;
+    box-shadow: 0px 0px 10px rgb(163, 163, 163);
 }
 .card-title{
     font-weight: bold;
@@ -81,7 +81,9 @@ body{
     border: 1px solid rgb(0, 6, 31);
     transition: 0.5s all;
 }
-
+.link{
+    cursor: pointer;
+}
 .card-data{
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;

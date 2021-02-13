@@ -1,32 +1,32 @@
-let spinner = $(".spinner");
-let wholePage = $('.first-page');
-let countries = $('.cards');
-let registrationArea = $('.registration-area');
+var spinner = $(".spinner");
+var wholePage = $('.first-page');
+var countries = $('.cards');
+var registrationArea = $('.registration-area');
 
-let signupForm = document.getElementById('sign-up-form');
-let signupModal = $('#sign-up-modal');
-let signupBtn = $('.sign-up-btn');
+var signupForm = document.getElementById('sign-up-form');
+var signupModal = $('#sign-up-modal');
+var signupBtn = $('.sign-up-btn');
 
-let signupUsernameError = $('.username-signup-error');
-let signupFullNameError = $('.fullname-signup-error');
-let signupPasswordError = $('.password-signup-error');
+var signupUsernameError = $('.username-signup-error');
+var signupFullNameError = $('.fullname-signup-error');
+var signupPasswordError = $('.password-signup-error');
 
 
 
-let loginForm = document.getElementById('login-form');
-let loginModal = $('#login-modal');
-let loginBtn = $('.login-btn');
+var loginForm = document.getElementById('login-form');
+var loginModal = $('#login-modal');
+var loginBtn = $('.login-btn');
 
-let userForm = document.getElementById('user-form');
-let userEditModal = $('#user-modal');
-let userBtn = $('.user-btn');
+var userForm = document.getElementById('user-form');
+var userEditModal = $('#user-modal');
+var userBtn = $('.user-btn');
 
-let userUsernameError = $('.username-user-error');
-let userFullNameError = $('.fullname-user-error');
-let userNewPasswordError = $('.new-password-user-error');
+var userUsernameError = $('.username-user-error');
+var userFullNameError = $('.fullname-user-error');
+var userNewPasswordError = $('.new-password-user-error');
 
-let loginError = $('.login-error')
-let signupError = $('.sign-up-error')
+var loginError = $('.login-error')
+var signupError = $('.sign-up-error')
 
 $(function () {
    $(document).scroll(function () {
@@ -133,7 +133,7 @@ async function showFavCountries(skip, limit) {
 const countryCard = (country, isFavorie) => {
    let isDisabled = !(window.location.href.indexOf("profile.html") > -1)
    return `
-   <div class="country-card card country-${country.uid} m-3" style="width: 18rem;">
+   <div class="country-card card country-${country.uid} m-3">
       <div class=" text-end mt-2">
          <div class="text-end ">
             <i style="font-size:2rem;" class=" ${(isDisabled) ? "" : "disable"} ${(isFavorie) ? 'fav-icon' : ''} ${(isFavorie) ? 'fas' : 'far'} icon-${country.uid} fa-heart"></i>
@@ -191,20 +191,7 @@ const generatePagination = (numOfCountries) => {
 }
 
 function DOMmanuplation() {
-   $('.sign-up-main-btn').on('click', () => {
-      loginError.html('');
-      signupForm.elements.usernameSignUp.value = '';
-      signupForm.elements.passwordSignUp.value = '';
-      signupForm.elements.fullNameSignUp.value = '';
-      signupError.html('')
-   })
-   $('.login-main-btn').on('click', () => {
-      signupUsernameError.html('')
-      signupFullNameError.html('')
-      signupPasswordError.html('')
-      loginForm.elements.usernameLogin.value = ''
-      loginForm.elements.passwordLogin.value = ''
-   })
+
    $('.logout').on('click', (e) => {
       e.stopPropagation();
       $('.logout').addClass('disabled')
@@ -489,4 +476,19 @@ $('#prevPage').unbind('click').bind('click', () => {
          scrollTop: $("#country-cards").offset().top
       },500);
    }
+})
+
+$('.sign-up-main-btn').on('click', () => {
+   loginError.html('');
+   signupForm.elements.usernameSignUp.value = '';
+   signupForm.elements.passwordSignUp.value = '';
+   signupForm.elements.fullNameSignUp.value = '';
+   signupError.html('')
+})
+$('.login-main-btn').on('click', () => {
+   signupUsernameError.html('')
+   signupFullNameError.html('')
+   signupPasswordError.html('')
+   loginForm.elements.usernameLogin.value = ''
+   loginForm.elements.passwordLogin.value = ''
 })

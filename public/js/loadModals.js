@@ -1,5 +1,5 @@
 const signUpModal = () => {
-   return `
+    return `
     <div class="modal fade " id="sign-up-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -39,11 +39,11 @@ const signUpModal = () => {
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn sign-up-btn btn-wheat px-3 rounded-pill">
-                        <div class="spinner-border disable signup-spinner spinner-border-sm" role="status"></div> Sign Up
-                    </button>
+                    <div class="justify-content-center text-center mt-4">
+                        <button type="button" class="btn sign-up-btn btn-wheat px-3 rounded-pill">
+                            <div class="spinner-border disable signup-spinner spinner-border-sm" role="status"></div> Sign Up
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ const signUpModal = () => {
 }
 
 const logInModal = () => {
-   return `
+    return `
     <div class="modal fade " id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -83,11 +83,14 @@ const logInModal = () => {
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn login-btn btn-wheat px-3 rounded-pill">
-                        <div class="spinner-border disable login-spinner spinner-border-sm" role="status"></div> Login
-                    </button>
+                    <div class="justify-content-center text-center mt-4">
+                        <a class="link toggle-login-signup font-roboto font-bold text-decoration-none">Don't have an account?</a>
+                    </div>
+                    <div class="justify-content-center text-center mt-4">
+                        <button type="button" class="btn login-btn btn-wheat px-3 rounded-pill">
+                            <div class="spinner-border disable login-spinner spinner-border-sm" role="status"></div> Login
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,8 +193,8 @@ const countryModal = () => {
     `
 }
 $('.modal-area').append(
-   signUpModal(),
-   logInModal(),
-   userModal(),
-   countryModal()
+    signUpModal(),
+    logInModal(),
+    userModal(),
+    countryModal()
 )
