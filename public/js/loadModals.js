@@ -182,7 +182,7 @@ const countryModal = () => {
                             <div class="country-deaths_daily row align-self-center">country name</div>
                             <div class="country-recovered row align-self-center">country name</div>
                             <div class="country-recovered_daily row align-self-center">country name</div>
-                            <hr/>
+                            
                             <div class="country-last-update"></div>
                         </div>
                     </div>            
