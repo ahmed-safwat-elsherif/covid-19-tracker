@@ -16,22 +16,22 @@ const signUpModal = () => {
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center my-2">
-                                <div class="col-sm-12 col-md-2"><label for="usernameSignUp">Username</label></div>
-                                <div class="col-sm-12 col-md-10">
+                                <div class="col-sm-12 col-md-3"><label for="usernameSignUp">Username</label></div>
+                                <div class="col-sm-12 col-md-9">
                                     <input type="text" placeholder="Username" class="rounded-pill form-control px-3" name="usernameSignUp" id="usernameSignUp">
                                     <span class="username-signup-error text-danger"></span>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center my-2">
-                                <div class="col-sm-12 col-md-2"><label for="fullNameSignUp">Full Name</label></div>
-                                <div class="col-sm-12 col-md-10">
+                                <div class="col-sm-12 col-md-3"><label for="fullNameSignUp">Full Name</label></div>
+                                <div class="col-sm-12 col-md-9">
                                     <input type="text" placeholder="Full Name" class="rounded-pill form-control px-3" name="fullNameSignUp" id="fullNameSignUp">
                                     <span class="fullname-signup-error text-danger"></span>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center my-2">
-                                <div class="col-sm-12 col-md-2"><label for="passwordSignUp">Password</label></div>
-                                <div class="col-sm-12 col-md-10">
+                                <div class="col-sm-12 col-md-3"><label for="passwordSignUp">Password</label></div>
+                                <div class="col-sm-12 col-md-9">
                                     <input type="password" placeholder="Password" class="form-control rounded-pill px-3"
                                         name="passwordSignUp" id="passwordSignUp">
                                     <span class="password-signup-error text-danger"></span>
