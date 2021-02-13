@@ -40,7 +40,10 @@ const signUpModal = () => {
                         </div>
                     </form>
                     <div class="justify-content-center text-center mt-4">
-                        <button type="button" class="btn sign-up-btn btn-wheat w-75 rounded-pill">
+                        <a class="link toggle-login-signup anchor-link font-roboto font-bold ">Already have an account!</a>
+                    </div>
+                    <div class="justify-content-center text-center mt-4">
+                        <button type="button" class="btn sign-up-btn btn-wheat w-50 rounded-pill">
                             <div class="spinner-border disable signup-spinner spinner-border-sm" role="status"></div> Sign Up
                         </button>
                     </div>
@@ -84,10 +87,10 @@ const logInModal = () => {
                         </div>
                     </form>
                     <div class="justify-content-center text-center mt-4">
-                        <a class="link toggle-login-signup font-roboto font-bold text-decoration-none">Don't have an account?</a>
+                        <a class="link toggle-login-signup anchor-link font-roboto font-bold ">Don't have an account?</a>
                     </div>
                     <div class="justify-content-center text-center mt-4">
-                        <button type="button" class="btn login-btn btn-wheat w-75 rounded-pill">
+                        <button type="button" class="btn login-btn btn-wheat w-50 rounded-pill">
                             <div class="spinner-border disable login-spinner spinner-border-sm" role="status"></div> Login
                         </button>
                     </div>
@@ -183,9 +186,6 @@ const countryModal = () => {
                             <div class="country-last-update"></div>
                         </div>
                     </div>            
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-wheat" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

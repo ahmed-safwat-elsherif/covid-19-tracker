@@ -1,4 +1,28 @@
 
+var signupFormUser = document.getElementById('sign-up-form');
+var signupModalUser = $('#sign-up-modal');
+var signupBtnUser = $('.sign-up-btn');
+
+var signupUsernameErrorUser = $('.username-signup-error');
+var signupFullNameErrorUser = $('.fullname-signup-error');
+var signupPasswordErrorUser = $('.password-signup-error');
+
+
+
+var loginFormUser = document.getElementById('login-form');
+var loginModalUser = $('#login-modal');
+var loginBtnUser = $('.login-btn');
+
+var userFormUser = document.getElementById('user-form');
+var userEditModalUser = $('#user-modal');
+var userBtnUser = $('.user-btn');
+
+var userUsernameErrorUser = $('.username-user-error');
+var userFullNameErrorUser = $('.fullname-user-error');
+var userNewPasswordErrorUser = $('.new-password-user-error');
+
+var loginErrorUser = $('.login-error')
+var signupErrorUser = $('.sign-up-error')
 
 
 let userApis = {
@@ -6,14 +30,13 @@ let userApis = {
    login: '/api/users/login',
    update: '/api/users/'
 }
-signupBtn.on('click', async (e) => {
+signupBtnUser.on('click', async (e) => {
    try {
       $('.signup-spinner').removeClass('disable')
-      signupBtn.addClass('disabled')
-      let username = signupForm.elements.usernameSignUp.value
-      let password = signupForm.elements.passwordSignUp.value
-      let fullName = signupForm.elements.fullNameSignUp.value
-      console.log("aa")
+      signupBtnUser.addClass('disabled')
+      let username = signupFormUser.elements.usernameSignUp.value
+      let password = signupFormUser.elements.passwordSignUp.value
+      let fullName = signupFormUser.elements.fullNameSignUp.value
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -31,28 +54,27 @@ signupBtn.on('click', async (e) => {
       
       data = await data.json();
       let { usernameValid, fullNameValid, passwordValid } = checkUserInfo(username, fullName, password)
-      console.log({usernameValid,fullNameValid, passwordValid});
-      signupUsernameError.html(usernameValid)
-      signupFullNameError.html(fullNameValid)
-      signupPasswordError.html(passwordValid)
-      signupError.html('');
+
+      signupUsernameErrorUser.html(usernameValid)
+      signupFullNameErrorUser.html(fullNameValid)
+      signupPasswordErrorUser.html(passwordValid)
+      signupErrorUser.html('');
       if (!data.error && usernameValid.length < 1) {
          setTimeout(() => {
-            console.log("DSDSD")
-            signupModal.modal('hide')
+            signupModalUser.modal('hide')
             $('.signup-spinner').addClass('disable')
-            signupBtn.removeClass('disabled')
-            loginModal.modal('show')
+            signupBtnUser.removeClass('disabled')
+            loginModalUser.modal('show')
          }, 2000)
       } else {
          setTimeout(() => {
-            signupUsernameError.html(usernameValid)
-            signupFullNameError.html(fullNameValid)
-            signupPasswordError.html(passwordValid)
+            signupUsernameErrorUser.html(usernameValid)
+            signupFullNameErrorUser.html(fullNameValid)
+            signupPasswordErrorUser.html(passwordValid)
             $('.signup-spinner').addClass('disable')
-            signupBtn.removeClass('disabled')
+            signupBtnUser.removeClass('disabled')
             if(status == 409){
-               signupError.html('Username is used')
+               signupErrorUser.html('Username is used')
             }
          }, 1000)
       }
@@ -61,12 +83,12 @@ signupBtn.on('click', async (e) => {
    }
 })
 
-loginBtn.on('click', async (e) => {
+loginBtnUser.on('click', async (e) => {
    try {
       $('.login-spinner').removeClass('disable')
-      loginBtn.addClass('disabled')
-      let username = loginForm.elements.usernameLogin.value;
-      let password = loginForm.elements.passwordLogin.value;
+      loginBtnUser.addClass('disabled')
+      let username = loginFormUser.elements.usernameLogin.value;
+      let password = loginFormUser.elements.passwordLogin.value;
 
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -84,23 +106,23 @@ loginBtn.on('click', async (e) => {
       data = await data.json()
       if (!data.error) {
          setTimeout(() => {
-            loginError.html('');
-            loginModal.modal('toggle')
+            loginErrorUser.html('');
+            loginModalUser.modal('toggle')
             $('.login-spinner').addClass('disable')
-            loginBtn.removeClass('disabled')
+            loginBtnUser.removeClass('disabled')
             localStorage.setItem('userToken', data.token)
             localStorage.setItem('username', data.username)
             localStorage.setItem('fullName', data.fullName || '')
             location.reload();
-            userForm.elements.usernameUser.value = data.username;
-            userForm.elements.fullNameUser.value = data.fullName;
+            userFormUser.elements.usernameUser.value = data.username;
+            userFormUser.elements.fullNameUser.value = data.fullName;
          }, 2000)
       } else {
          setTimeout(() => {
             $('.login-spinner').addClass('disable')
             $('#passwordLogin').val('');
-            loginError.html('Username or password is invalid')
-            loginBtn.removeClass('disabled')
+            loginErrorUser.html('Username or password is invalid')
+            loginBtnUser.removeClass('disabled')
          }, 1000)
       }
    } catch (error) {
@@ -108,23 +130,23 @@ loginBtn.on('click', async (e) => {
    }
 })
 
-userBtn.on('click', async (e) => {
+userBtnUser.on('click', async (e) => {
    try {
       $('.user-spinner').removeClass('disable');
-      userBtn.addClass('disabled');
-      let username = userForm.elements.usernameUser.value;
-      let fullName = userForm.elements.fullNameUser.value;
-      let newPassword = userForm.elements.newPasswordUser.value;
+      userBtnUser.addClass('disabled');
+      let username = userFormUser.elements.usernameUser.value;
+      let fullName = userFormUser.elements.fullNameUser.value;
+      let newPassword = userFormUser.elements.newPasswordUser.value;
       localStorage.setItem('username',username);
       localStorage.setItem('fullName',fullName);
       let { usernameValid, fullNameValid } = checkUserInfo(username, fullName);
-      userUsernameError.html(usernameValid);
-      userFullNameError.html(fullNameValid);
+      userUsernameErrorUser.html(usernameValid);
+      userFullNameErrorUser.html(fullNameValid);
       let newPasswordUser = document.getElementById("newPasswordUser");
       if (newPasswordUser.hasAttribute('disabled')) {
          var raw = JSON.stringify({ "username": username, "fullName": fullName});
       } else {
-         userNewPasswordError.html(checkUserInfo(username,fullName,newPassword).passwordValid);
+         userNewPasswordErrorUser.html(checkUserInfo(username,fullName,newPassword).passwordValid);
          var raw = JSON.stringify({ "username": username, "fullName": fullName,"newPassword":newPassword });
       }
       var myHeaders = new Headers();
@@ -144,14 +166,14 @@ userBtn.on('click', async (e) => {
      
       if (data.valid) {
          setTimeout(() => {
-            userEditModal.modal('toggle')
+            userEditModalUser.modal('toggle')
             $('.user-spinner').addClass('disable')
-            userBtn.removeClass('disabled')
+            userBtnUser.removeClass('disabled')
          }, 2000)
       } else {
          setTimeout(() => {
             $('.user-spinner').addClass('disable')
-            userBtn.removeClass('disabled')
+            userBtnUser.removeClass('disabled')
          }, 1000)
       }
    } catch (error) {
@@ -198,3 +220,8 @@ const checkUserInfo = (username='', fullName='', password='') => {
    }
    return { usernameValid, fullNameValid, passwordValid }
 }
+
+$('.toggle-login-signup').click(()=>{
+   loginModalUser.modal('toggle');
+   signupModalUser.modal('toggle');
+})

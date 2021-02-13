@@ -33,10 +33,22 @@ $(function () {
       if (window.location.href.indexOf("profile.html") > -1) {
          return;
       }
+      
       var $nav = $(".navbar");
-      var $homeSection = $(".section-home")
-      // var $navItem = $(".nav-item")
+      var $homeSection = $(".section-home");
+      var $goToUp = $('.go-up-arrow');
       $nav.toggleClass('scrolled', $(this).scrollTop() > ($homeSection.height()));
+      if ($(window).scrollTop() > 300) {
+         $goToUp.removeClass('invisible');
+       } else {
+         $goToUp.addClass('invisible');
+       }
+     });
+   
+     $('.go-up-arrow').on('click', function(e) {
+       e.preventDefault();
+       $('html, body').animate({scrollTop:0});
+
    });
 });
 
@@ -133,7 +145,7 @@ async function showFavCountries(skip, limit) {
 const countryCard = (country, isFavorie) => {
    let isDisabled = !(window.location.href.indexOf("profile.html") > -1)
    return `
-   <div class="country-card card country-${country.uid} m-3">
+   <div class="country-card card country-${country.uid} m-3" id="c_${country._id}">
       <div class=" text-end mt-2">
          <div class="text-end ">
             <i style="font-size:2rem;" class=" ${(isDisabled) ? "" : "disable"} ${(isFavorie) ? 'fav-icon' : ''} ${(isFavorie) ? 'fas' : 'far'} icon-${country.uid} fa-heart"></i>
@@ -162,14 +174,14 @@ const generatePagination = (numOfCountries) => {
    let limit = 32;
    let pagOfBtns;
    let numOfPages = (Math.ceil(numOfCountries / limit));
-   for (let i = numOfPages; i >= 1; i--) {
+   // This section must be maintained later 
+   for (let i = numOfPages-1; i >= 1; i--) {
       skip = 32 * (i - 1);
       pagOfBtns = `<button type="button" class="pagiNum ${skip}-${limit} ${i}_${numOfPages} btn mx-1 rounded-circle btn-wheat">${i}</button>`
       $(pagOfBtns).insertAfter($("#prevPage"))
    }
    $('.pagiNum').first().addClass('active')
    $('.pagiNum').on('click', (e) => {
-      console.log("btn")
       $('.pagiNum.active').removeClass('active')
       e.target.classList.add('active')
       
@@ -218,43 +230,8 @@ function DOMmanuplation() {
          $(e.target).addClass('far')
       }
    )
-   $('.country-card').dblclick((e) => {
-      let _id = e.target.id;
-      console.log(_id);
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", localStorage.getItem('userToken'));
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({ "_id": _id });
-      console.log(e.target)
-      let uid = e.target.classList[2].split("-")[1];
-      var requestOptions = {
-         method: 'POST',
-         headers: myHeaders,
-         body: raw,
-         redirect: 'follow'
-      };
-      let target = document.querySelector(`.icon-${uid}`);
-
-      fetch("/api/users/favorites/", requestOptions)
-         .then(response => {
-            if (response.status == 401) {
-               $('#login-modal').modal('toggle');
-               return
-            }
-            $(target).attr('class', '');
-            $(target).addClass('fa fa-circle-o-notch fa-spin')
-            //$(target).off('mouseenter mouseleave')
-            setTimeout(() => {
-               $(target).attr('class', '');
-               $(target).addClass('fav-icon')
-               $(target).addClass('fas fa-heart')
-            }, 1000)
-         })
-         .catch(error => error /*console.log('error', error)*/);
-   })
    $('.fa-heart:not(.fav-icon)').on('click', (e) => {
-      let _id = e.target.parentElement.parentElement.parentElement.id;
+      let _id = e.target.parentElement.parentElement.parentElement.id.split("_")[1];
       var myHeaders = new Headers();
       myHeaders.append("Authorization", localStorage.getItem('userToken'));
       myHeaders.append("Content-Type", "application/json");
@@ -320,11 +297,11 @@ function DOMmanuplation() {
             $('.country-recovered_daily').html(`<span class="text-success font-bold col-6" >Recovered (daily):</span> <span class="col-6 text-center">${country.recovered_daily || 'N/A'}</span><hr class="m-auto mb-2"/>`);
             $('.country-last-update').html(`<span class="text-muted font-bold" >Last updated: <span>${lastUpdate}</span></span> `);
          })
-         .catch(error => console.log('error', error));
+         .catch(error => error /*console.log('error', error)*/);
    })
 
    $('.fa-times-circle').on('click', (e) => {
-      let _id = e.target.parentElement.parentElement.parentElement.id;
+      let _id = e.target.parentElement.parentElement.parentElement.id.split("_")[1];
       var myHeaders = new Headers();
       myHeaders.append("Authorization", localStorage.getItem('userToken'));
       myHeaders.append("Content-Type", "application/json");
@@ -343,10 +320,10 @@ function DOMmanuplation() {
             if (response.status == 401) {
                return
             }
-            $(`#${_id}`).animate({
+            $(`#c_${_id}`).animate({
                opacity: 0
             }, 700, function () {
-               $(`#${_id}`).remove()
+               $(`#c_${_id}`).remove()
             });
             return response.json();
          })

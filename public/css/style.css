@@ -84,6 +84,25 @@ body{
 .link{
     cursor: pointer;
 }
+.link:hover{
+    text-decoration: underline;
+    
+}
+.back-to-countries{
+    font-size: 1.2rem;
+    transition: 0.5s all;
+    padding-left: 15px;
+}
+.back-to-countries:hover{
+    padding-left: 0;
+    transition: 0.7s all;
+}
+.anchor-link{
+    text-decoration:none;
+}
+.anchor-link:hover{
+    text-decoration: underline;
+}
 .card-data{
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: bold;
@@ -114,6 +133,27 @@ body{
 }
 .font-bold{
     font-weight: bold;
+}
+.go-up-arrow{
+    position: fixed;
+    height: 3rem;
+    width: 3rem;
+    bottom: 5rem;
+    right: 6vw;
+    background-color: var(--nav-bg-color);
+    color: wheat;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+.go-up-arrow:hover{
+    box-shadow: 0 0 10px rgb(99, 99, 99);
+    bottom: 5.5rem;
+    color: wheat;
+    transition: 0.5s all;
+}
+.go-up-arrow.invisible{
+    pointer-events: none;
+    opacity: 0;
 }
 
 
