@@ -177,7 +177,7 @@ const generatePagination = (numOfCountries) => {
    // This section must be maintained later 
    for (let i = numOfPages-1; i >= 1; i--) {
       skip = 32 * (i - 1);
-      pagOfBtns = `<button type="button" class="pagiNum ${skip}-${limit} ${i}_${numOfPages} btn mx-1 rounded-circle btn-wheat">${i}</button>`
+      pagOfBtns = `<button type="button" class="pagiNum ${skip}-${limit} ${i}_${numOfPages-1} btn mx-1 rounded-circle btn-wheat">${i}</button>`
       $(pagOfBtns).insertAfter($("#prevPage"))
    }
    $('.pagiNum').first().addClass('active')
